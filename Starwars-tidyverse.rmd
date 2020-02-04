@@ -1,0 +1,55 @@
+---
+title: 'Creating plots with Tidyverse Star Wars data'
+author: 'Faryal Usman'
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  bookdown::html_document2:
+    fig_caption: yes
+bibliography: my-bib.bib
+---
+
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(bookdown)
+```
+
+
+```{r, starwars-plot, fig.cap = 'A ggplot of starwars data'}
+starwars %>% 
+  filter(species == "Human") %>% 
+ggplot() +
+  aes(x = gender, 
+      y = height, color = gender) +
+  geom_point() + ggtitle("Heights of humans by gender in the Star Wars universe")
+```
+
+
+```{r, starwars-table}
+starwars %>% 
+  filter(species == "Human")  %>% 
+  select(name, 
+         height, 
+         gender) %>% 
+  knitr::kable(caption = "A knitr kable table of starwars data ")
+```
+
+
+
+```{r, my-fig, fig.cap= 'My non-code figure'}
+knitr::include_graphics(path = '/Users/faru/Desktop/tree.jpg')
+```
+
+We can see the starwars plot in the figure \@ref(fig:starwars-plot).
+
+
+We can see the starwars table in the table \@ref(tab:starwars-table).
+
+
+We can see the non-code generated image in the figure \@ref(fig:my-fig). 
+
+[@baker2016reproducibility] have mentioned a crisis in reproducibility where more than 70% of researchers have tried and failed to reproduce another scientist's experiments, and more than half have failed to reproduce their own experiments. In this climate there is urgent need for reproducibility technology. In this regard, [@baumer2014r] highlight how Rmarkdown has replaced the need for copy-paste version control and allows for advanced statistical analysis to be replicated in a painless fashion.
+
+
+
